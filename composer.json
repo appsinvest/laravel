@@ -1,21 +1,36 @@
 {
-    "name": "laravel/laravel",
+    "name": "appsinvest/laravel",
     "type": "project",
     "description": "The skeleton application for the Laravel framework.",
     "keywords": ["laravel", "framework"],
     "license": "MIT",
     "require": {
-        "php": "^8.2",
+        "php": "^8.3",
+        "ext-bcmath": "*",
+        "ext-curl": "*",
+        "ext-zlib": "*",
+        "ext-redis": "*",
+        "ext-http": "*",
         "laravel/framework": "^11.9",
-        "laravel/tinker": "^2.9"
+        "laravel/horizon": "^5",
+        "laravel/tinker": "^2.9",
+        "softinvest/dbwrap": "^1.0",
+        "softinvest/dto": "^1.0",
+        "softinvest/http-response": "^1.0"
     },
     "require-dev": {
         "fakerphp/faker": "^1.23",
+        "barryvdh/laravel-ide-helper": "^3",
+        "darkaonline/l5-swagger": "^8.6",
         "laravel/pint": "^1.13",
-        "laravel/sail": "^1.26",
         "mockery/mockery": "^1.6",
         "nunomaduro/collision": "^8.0",
-        "phpunit/phpunit": "^11.0.1"
+        "larastan/larastan": "^2.0",
+        "nunomaduro/phpinsights": "^2.11",
+        "phpstan/phpstan": "^1.11",
+        "roave/security-advisories": "dev-latest",
+        "slevomat/coding-standard": "~8.0",
+        "squizlabs/php_codesniffer": "^3.10"
     },
     "autoload": {
         "psr-4": {
@@ -44,7 +59,13 @@
             "@php artisan key:generate --ansi",
             "@php -r \"file_exists('database/database.sqlite') || touch('database/database.sqlite');\"",
             "@php artisan migrate --graceful --ansi"
-        ]
+        ],
+        "cs-check": "phpcs . --standard=ruleset.xml",
+        "cs-fix": "phpcbf app --standard=ruleset.xml",
+        "phpstan": "phpstan analyse --configuration=phpstan.neon --memory-limit=512M --no-progress --error-format=table --no-interaction --ansi",
+        "lint": "vendor/bin/parallel-lint --exclude .git --exclude vendor .",
+        "tests": "vendor/bin/phpunit",
+        "swagger": "@php artisan l5-swagger:generate"
     },
     "extra": {
         "laravel": {
@@ -57,7 +78,8 @@
         "sort-packages": true,
         "allow-plugins": {
             "pestphp/pest-plugin": true,
-            "php-http/discovery": true
+            "php-http/discovery": true,
+            "dealerdirect/phpcodesniffer-composer-installer": true
         }
     },
     "minimum-stability": "stable",
