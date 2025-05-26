@@ -1,5 +1,7 @@
 {
     "name": "appsinvest/laravel",
+    "$schema": "https://getcomposer.org/schema.json",
+    "name": "laravel/laravel",
     "type": "project",
     "description": "The skeleton application for the Laravel framework.",
     "keywords": ["laravel", "framework"],
@@ -11,19 +13,23 @@
         "ext-zlib": "*",
         "ext-redis": "*",
         "ext-http": "*",
-        "laravel/framework": "^11.9",
+        "laravel/framework": "^12.0",
         "laravel/horizon": "^5",
-        "laravel/tinker": "^2.9",
+        "laravel/tinker": "^2.10.1",
         "softinvest/dbwrap": "^1.0",
         "softinvest/dto": "^1.0",
-        "softinvest/http-response": "^1.0"
+        "softinvest/http-response": "^1.0",
     },
     "require-dev": {
         "fakerphp/faker": "^1.23",
         "barryvdh/laravel-ide-helper": "^3",
         "darkaonline/l5-swagger": "^8.6",
+        "laravel/pail": "^1.2.2",
         "laravel/pint": "^1.13",
+        "laravel/sail": "^1.41",
         "mockery/mockery": "^1.6",
+        "nunomaduro/collision": "^8.6",
+        "phpunit/phpunit": "^11.5.3"
         "nunomaduro/collision": "^8.0",
         "larastan/larastan": "^2.0",
         "nunomaduro/phpinsights": "^2.11",
@@ -65,7 +71,15 @@
         "phpstan": "phpstan analyse --configuration=phpstan.neon --memory-limit=512M --no-progress --error-format=table --no-interaction --ansi",
         "lint": "vendor/bin/parallel-lint --exclude .git --exclude vendor .",
         "tests": "vendor/bin/phpunit",
-        "swagger": "@php artisan l5-swagger:generate"
+        "swagger": "@php artisan l5-swagger:generate",
+        "dev": [
+            "Composer\\Config::disableProcessTimeout",
+            "npx concurrently -c \"#93c5fd,#c4b5fd,#fb7185,#fdba74\" \"php artisan serve\" \"php artisan queue:listen --tries=1\" \"php artisan pail --timeout=0\" \"npm run dev\" --names=server,queue,logs,vite"
+        ],
+        "test": [
+            "@php artisan config:clear --ansi",
+            "@php artisan test"
+        ]
     },
     "extra": {
         "laravel": {
