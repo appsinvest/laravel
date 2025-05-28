@@ -41,6 +41,7 @@ migrate: ## Drop all tables and re-run all migrations
 
 buildapp:
 	docker exec -i app rm -rf bootstrap/cache/*.php
+	docker exec -i app git config --global --add safe.directory /www
 	docker exec -i app composer install
 	docker exec -i app php artisan key:generate
 	#docker exec -i app php artisan optimize
