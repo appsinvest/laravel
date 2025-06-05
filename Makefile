@@ -33,17 +33,16 @@ stop: ## Stop docker
 	docker compose down
 
 openapi: ## Build openapi documentation
-	docker exec -i app php artisan l5-swagger:generate
+	docker exec -i app composer openapi
 
 migrate: ## Drop all tables and re-run all migrations
-	docker exec -i app php artisan migrate:fresh --seed
-	docker exec -i app php artisan migrate-plpgsql
+	docker exec -i app php artisan migrate:fresh --seed --force
 
 buildapp:
 	docker exec -i app rm -rf bootstrap/cache/*.php
 	docker exec -i app git config --global --add safe.directory /www
 	docker exec -i app composer install
-	docker exec -i app php artisan key:generate
+	docker exec -i app php artisan key:generate --force
 	#docker exec -i app php artisan optimize
 	#docker exec -i app php artisan optimize:clear
 
@@ -68,6 +67,9 @@ phpstan: ## Check PHP standards
 
 lint: ## Run PHP linter
 	docker exec -i app composer lint
+
+psalm: ## Run PSALM
+	docker exec -i app composer psalm
 
 install:
 	make env && \

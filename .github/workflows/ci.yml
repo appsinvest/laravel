@@ -11,7 +11,7 @@ permissions:
 
 jobs:
   coding-standards:
-    name: CS, PHPStan, Lint
+    name: CS, PHPStan, Lint, PSALM
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -23,3 +23,5 @@ jobs:
         run: make phpstan
       - name: Run PHP Parallel Lint
         run: make lint
+      - name: Run PSALM
+        run: make psalm
