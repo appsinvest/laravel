@@ -34,7 +34,9 @@
         "phpstan/phpstan": "^2",
         "slevomat/coding-standard": "~8.0",
         "squizlabs/php_codesniffer": "^3.10",
-        "vimeo/psalm": "^6.12"
+        "vimeo/psalm": "^6.12",
+        "phpcompatibility/php-compatibility": "^9.3",
+        "phpstan/phpstan-strict-rules": "^2.0"
     },
     "autoload": {
         "psr-4": {
@@ -65,10 +67,10 @@
             "@php artisan migrate --graceful --ansi"
         ],
         "cs-check": "phpcs . --standard=ruleset.xml",
-        "cs-fix": "phpcbf app --standard=ruleset.xml",
+        "cs-fix": "phpcbf . --standard=ruleset.xml",
         "phpstan": "phpstan analyse --configuration=phpstan.neon --memory-limit=512M --no-progress --error-format=table --no-interaction --ansi",
         "lint": "vendor/bin/parallel-lint --exclude .git --exclude vendor .",
-        "psalm": "vendor/bin/psalm --no-cache",
+        "psalm": "vendor/bin/psalm --no-cache -c=./psalm.xml",
         "tests": "vendor/bin/phpunit",
         "openapi": "@php artisan l5-swagger:generate",
         "dev": [
