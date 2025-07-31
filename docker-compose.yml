@@ -1,6 +1,7 @@
 services:
   app:
     container_name: app
+    platform: linux/amd64
     image: appscenter/larasuperdock:latest
     working_dir: /www/
     volumes:
@@ -18,7 +19,7 @@ services:
 
   postgres:
     container_name: postgres
-    image: postgres:16.4-bullseye
+    image: postgres:17.5-bullseye
     volumes:
       - ./:/www
     environment:

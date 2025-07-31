@@ -68,6 +68,9 @@ phpstan: ## Check PHP standards
 lint: ## Run PHP linter
 	docker exec -i app composer lint
 
+pint: ## Run PIMT
+	docker exec -i app composer pint
+
 psalm: ## Run PSALM
 	docker exec -i app composer psalm
 
