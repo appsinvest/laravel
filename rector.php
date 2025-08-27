@@ -40,7 +40,6 @@ return RectorConfig::configure()
 
         return [
             $basePath . '/app',
-            $basePath . '/bootstrap',
             $basePath . '/config',
             $basePath . '/public',
             $basePath . '/resources',
