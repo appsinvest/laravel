@@ -74,6 +74,15 @@ pint: ## Run PIMT
 psalm: ## Run PSALM
 	docker exec -i app composer psalm
 
+validate-composer: ## Run composer validation
+	docker exec -i app composer validate --strict
+
+rector: ## Run rector
+	docker exec -i app composer rector
+
+rector-fix: ## Run fix rector
+	docker exec -i app composer rector-fix
+
 install:
 	make env && \
 	make buildapp && \

@@ -12,22 +12,20 @@ class HorizonServiceProvider extends HorizonApplicationServiceProvider
 {
     /**
      * Bootstrap any application services.
-     *
-     * @return void
      */
-    public function boot()
+    #[\Override]
+    public function boot(): void
     {
         parent::boot();
     }
 
+    #[\Override]
     protected function authorization()
     {
         $this->gate();
 
         Horizon::auth(
-            static function ($request) {
-                return true;
-            }
+            static fn($request) => true
         );
     }
 
@@ -38,13 +36,12 @@ class HorizonServiceProvider extends HorizonApplicationServiceProvider
      *
      * @return void
      */
+    #[\Override]
     protected function gate()
     {
         Gate::define(
             'viewHorizon',
-            static function ($user) {
-                return true;
-            }
+            static fn($user) => true
         );
     }
 }

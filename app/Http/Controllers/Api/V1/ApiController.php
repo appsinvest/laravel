@@ -29,8 +29,6 @@ class ApiController extends HttpResponseController
     )]
     public function endpoint(): JsonResponse
     {
-        return $this->response(function () {
-            return [];
-        });
+        return $this->response(fn() => []);
     }
 }
