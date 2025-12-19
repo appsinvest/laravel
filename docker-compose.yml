@@ -19,7 +19,7 @@ services:
 
   postgres:
     container_name: postgres
-    image: postgres:17.5-bullseye
+    image: postgres:18.1-bookworm
     volumes:
       - ./:/www
     environment:
