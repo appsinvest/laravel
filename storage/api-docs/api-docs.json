@@ -1,0 +1,85 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Service",
+        "description": "Service",
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "http://localhost",
+            "description": "local server"
+        }
+    ],
+    "paths": {
+        "/api/v1/endpoint ": {
+            "get": {
+                "tags": [
+                    "Endpoint"
+                ],
+                "summary": "Endpoint",
+                "operationId": "4aafa1bbeb5f8d0da10ae35b13557732",
+                "responses": {
+                    "200": {
+                        "description": "Successfully response",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Error: Internal Server Error"
+                    }
+                }
+            }
+        },
+        "/": {
+            "get": {
+                "tags": [
+                    "Main"
+                ],
+                "summary": "Main page",
+                "operationId": "595448eab0c657c457db37c34a506e93",
+                "responses": {
+                    "200": {
+                        "description": "Successfully response",
+                        "content": {
+                            "application/xml": {
+                                "schema": {}
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Error: Internal Server Error"
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "securitySchemes": {
+            "bearerAuth": {
+                "type": "http",
+                "in": "header",
+                "bearerFormat": "JWT",
+                "scheme": "bearer"
+            }
+        }
+    },
+    "security": [
+        {
+            "bearerAuth": []
+        }
+    ],
+    "tags": [
+        {
+            "name": "Endpoint",
+            "description": "Endpoint"
+        },
+        {
+            "name": "Main",
+            "description": "Main"
+        }
+    ]
+}

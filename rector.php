@@ -47,6 +47,9 @@ return RectorConfig::configure()
             $basePath . '/tests',
         ];
     })())
+    ->withSets([
+        \RectorLaravel\Set\LaravelSetList::LARAVEL_120,
+    ])
     ->withPhpSets(php83: true)
     ->withRules([
         AddVoidReturnTypeWhereNoReturnRector::class,
@@ -76,7 +79,7 @@ return RectorConfig::configure()
         ThrowIfRector::class,
         UseComponentPropertyWithinCommandsRector::class,
         ValidationRuleArrayStringValueToArrayRector::class,
-//        LaravelLevelSetList::UP_TO_LARAVEL_120,
+        \Rector\CodingStyle\Rector\Encapsed\EncapsedStringsToSprintfRector::class,
     ])
     ->withCache(
         cacheDirectory: (static function () {
@@ -88,11 +91,13 @@ return RectorConfig::configure()
     )->withPreparedSets(
         deadCode: true,
         codeQuality: true,
+        codingStyle:true,
+        privatization: true,
+        naming: false,
         instanceOf: true,
         earlyReturn: true,
-        strictBooleans: true,
         carbon: true,
-        phpunitCodeQuality: true,
+        phpunitCodeQuality: true
     )->withSkip([
         YieldDataProviderRector::class,
     ]);
